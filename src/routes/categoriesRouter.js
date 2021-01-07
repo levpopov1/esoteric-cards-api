@@ -7,13 +7,14 @@ const Category = mongoose.model('Category');
 
 const findByID = require('../middleware/findById');
 const findAll = require('../middleware/findAll');
+const findByParam = require('../middleware/findByParam');
 
 // all categories
 router.get('/', findAll(Category), categoriesController.getAllCategories);
 router.get('/:id', findByID(Category), categoriesController.getOneCategory);
 
 // vondors in a category
-router.get('/:id/vendors', findByID(Category), categoriesController.getAllVendors);
+router.get('/:slug/vendors', findByParam(Category, 'slug'), categoriesController.getAllVendors);
 // router.get('/:id/vendors/:id', findByID(Category), findByID(Category), categoriesController.getOneVendor);
 
 // decks in a category
