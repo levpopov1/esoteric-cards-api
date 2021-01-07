@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { notFound, genericErrorHandler } = require('../middleware/errorHandlers');
 
-// defin route handlers
-const peopleRouter = require('./peopleRouter');
+// define route handlers
+const categoriesRouter = require('./categoriesRouter');
+const vendorsRouter = require('./vendorsRouter');
+const decksRouter = require('./decksRouter');
 
 // basic response on Root endpoint
 router.get('/', function(req, res){
@@ -14,7 +16,33 @@ router.get('/', function(req, res){
 });
 
 // apply handlers to specific routes
-router.use('/people', peopleRouter);
+
+
+// goup by, 
+// category
+// vendor
+// deck
+
+// list of categories
+router.use('/categories', categoriesRouter);
+
+// // list of vendors
+router.use('/vendors', vendorsRouter);
+
+// // list of decks
+router.use('/decks', decksRouter);
+
+
+
+
+// // decks by vendor
+// router.use('/vendors/:id/decks', playingCardsRouter);
+// router.use('/vendors/:id/:deck_id', playingCardsRouter);
+
+// // decks by id
+// router.use('/decks/:deck_id', playingCardsRouter);
+
+
 
 // if none of the above routes handle the request it will error out here
 router.use(notFound);
