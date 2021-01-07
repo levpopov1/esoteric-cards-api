@@ -3,6 +3,7 @@
         "category_id": "1",
         "name": "Playing Cards",
         "order": 1,
+        "slug": "playing-cards",
         "vendors": ["1","2","3","4","5","6"],
         "decks": ["1","2","3","4","5","6","7","8","9"]
     },
@@ -10,6 +11,7 @@
         "category_id": "2",
         "name": "Card Games",
         "order": 2,
+        "slug": "card-games",
         "vendors": [
 
         ],
@@ -21,6 +23,7 @@
         "category_id": "3",
         "name": "Tarot Cards",
         "order": 3,
+        "slug": "tarot-cards",
         "vendors": [
 
         ],
