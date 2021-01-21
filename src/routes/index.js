@@ -6,6 +6,7 @@ const { notFound, genericErrorHandler } = require('../middleware/errorHandlers')
 const categoriesRouter = require('./categoriesRouter');
 const vendorsRouter = require('./vendorsRouter');
 const decksRouter = require('./decksRouter');
+const usersRouter = require('./usersRouter');
 
 // basic response on Root endpoint
 router.get('/', function(req, res){
@@ -26,12 +27,14 @@ router.get('/', function(req, res){
 // list of categories
 router.use('/categories', categoriesRouter);
 
-// // list of vendors
+// list of vendors
 router.use('/vendors', vendorsRouter);
 
-// // list of decks
+// list of decks
 router.use('/decks', decksRouter);
 
+// list of users and registration
+router.use('/users', usersRouter);
 
 
 
