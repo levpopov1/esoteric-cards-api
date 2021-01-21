@@ -62,5 +62,49 @@
         "decks": [
 
         ]
+    },
+    {
+        "vendor_id": "7",
+        "name": "Blizzard",
+        "category": "Card Games", 
+        "order": 1,
+        "slug": "blizzard",
+        "img": "vendor.jpg",
+        "decks": [
+
+        ]
+    },
+    {
+        "vendor_id": "8",
+        "name": "Wizards of the Coast",
+        "category": "Card Games", 
+        "order": 2,
+        "slug": "wizards-of-the-coast",
+        "img": "vendor.jpg",
+        "decks": [
+
+        ]
+    },
+    {
+        "vendor_id": "9",
+        "name": "Riot Games",
+        "category": "Card Games", 
+        "order": 3,
+        "slug": "riot-games",
+        "img": "vendor.jpg",
+        "decks": [
+
+        ]
+    }
+    {
+        "vendor_id": "10",
+        "name": "Konami",
+        "category": "Card Games", 
+        "order": 4,
+        "slug": "konami",
+        "img": "vendor.jpg",
+        "decks": [
+
+        ]
     }
 ]
