@@ -1,31 +1,22 @@
 {
-  "name": "node-api-template",
+  "name": "esoteric-cards-api",
   "version": "1.0.0",
-  "description": "Node boilerplate for simple API",
-  "main": "index.js",
+  "description": "Node API for Esoteric Cards project",
+  "main": "server.js",
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/levpopov1/node-api-template.git"
+    "type": "git"
   },
-  "keywords": [
-    "nodejs",
-    "api",
-    "template"
-  ],
-  "author": "Lev Popov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/levpopov1/node-api-template/issues"
-  },
-  "homepage": "https://github.com/levpopov1/node-api-template#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3",
+    "express-slow-down": "^1.4.0",
     "mongoose": "^5.9.22",
     "passport": "^0.4.1"
   },
