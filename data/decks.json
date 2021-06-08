@@ -2,10 +2,12 @@
     {
         "deck_id": "1",
         "name": "Monarch",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "monarch",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
             {
                 "card_id": "1",
@@ -376,10 +378,12 @@
     {
         "deck_id": "2",
         "name": "Union",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "union",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -387,10 +391,12 @@
     {
         "deck_id": "3",
         "name": "Citizen",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "citizen",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -398,10 +404,12 @@
     {
         "deck_id": "4",
         "name": "Hudson",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "hudson",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -409,10 +417,12 @@
     {
         "deck_id": "5",
         "name": "High Victorian",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "high-victorian",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -420,10 +430,12 @@
     {
         "deck_id": "6",
         "name": "Contraband",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "contaband",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -431,10 +443,12 @@
     {
         "deck_id": "7",
         "name": "Medallion",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "medallion",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -442,10 +456,12 @@
     {
         "deck_id": "8",
         "name": "Tycoon",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "tycoon",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
@@ -453,10 +469,25 @@
     {
         "deck_id": "9",
         "name": "Artisan",
+        "img": "whatever.png",
         "vendor": "Theory11",
         "category": "Playing Cards", 
-        "img": "whatever.png",
         "slug": "atrisan",
+        "vendor_slug": "theory11",
+        "category_slug": "playing-cards",
+        "cards": [
+
+        ]
+    },
+    {
+        "deck_id": "10",
+        "name": "Keeper",
+        "img": "whatever.png",
+        "vendor": "Ellusionist",
+        "category": "Playing Cards",
+        "slug": "keeper",
+        "vendor_slug": "ellusionist",
+        "category_slug": "playing-cards",
         "cards": [
 
         ]
