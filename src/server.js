@@ -5,6 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
 const connectDB  = require('./db')
+const simulateSlowNetwork = require('./middleware/simulateSlowNetwork');
 
 // sets environment variables based on centents of .env file
 require('dotenv').config();
@@ -34,7 +35,7 @@ app.use(passport.session());
 
 
 // route handlers entrypoint for all routes
-app.use('/api/v1', routes);
+app.use('/api/v1', simulateSlowNetwork(3000), routes);
 
 // begin listening on given port
 const PORT = process.env.PORT || 5000;
