@@ -33,9 +33,11 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// use this to slow down requests to test frontend loading apinners etc.
+app.use(simulateSlowNetwork(3000));
 
 // route handlers entrypoint for all routes
-app.use('/api/v1', simulateSlowNetwork(3000), routes);
+app.use('/api/v1', routes);
 
 // begin listening on given port
 const PORT = process.env.PORT || 5000;
