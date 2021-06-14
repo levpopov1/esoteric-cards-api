@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
-const connectDB  = require('./db')
+const connectDB  = require('./db');
+const cookieParser = require('cookie-parser');
 const simulateSlowNetwork = require('./middleware/simulateSlowNetwork');
 
 // sets environment variables based on centents of .env file
@@ -28,6 +29,8 @@ app.use(cors());
 app.use(morgan('dev'));
 // url middleware
 app.use(express.json());
+// cookies middleware
+app.use(cookieParser());
 
 // use this to slow down requests to test frontend loading apinners etc.
 // app.use(simulateSlowNetwork(3000));
