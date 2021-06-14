@@ -7,6 +7,7 @@ const categoriesRouter = require('./categoriesRouter');
 const vendorsRouter = require('./vendorsRouter');
 const decksRouter = require('./decksRouter');
 const usersRouter = require('./usersRouter');
+const authRouter = require('./authRotuer');
 
 // basic response on Root endpoint
 router.get('/', function(req, res){
@@ -36,7 +37,8 @@ router.use('/decks', decksRouter);
 // list of users and registration
 router.use('/users', usersRouter);
 
-
+// authentication endpoints
+router.use('/auth', authRouter);
 
 // // decks by vendor
 // router.use('/vendors/:id/decks', playingCardsRouter);
