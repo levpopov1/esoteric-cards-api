@@ -12,13 +12,25 @@ function createRefreshToken(user){
   return jwt.sign({id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "30d"});
 }
 
-function login(req, res){
+async function login(req, res){
     
-  // Do user auth here
-  const user = {id: 1, name: "admin"}
+  const errors = validationResult(req);
+  
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array({ onlyFirstError: true }) });
+  }
+  
+  const user = req.user;
+  const submittedPassword = req.body.password;
+  const isPasswordValid = await bcrypt.compare(submittedPassword, user.password);
 
+  if(!isPasswordValid){
+    return res.status(401).json({error: 401, message: "Unauthorized. Invalid credentials"});
+  }
+    
   const accessToken = createAccessToken(user);
-  res.cookie("jid", createRefreshToken(user), {httpOnly: true});
+  const refreshToken = createRefreshToken(user);
+  res.cookie("jid", refreshToken, {httpOnly: true});
   res.status(200).json({accessToken});
 
 }
@@ -46,7 +58,7 @@ async function register(req, res){
         return res.status(500).json({error: 500, message: "Failed to create user"});
       }
 
-      return res.status(200).json({error: null, user: result.id});
+      return res.status(200).json({ok: true, user: result.id});
     });
   } catch (error) {
     res.status(500).json({error: 500, message: "Failed to create user"});
