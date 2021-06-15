@@ -9,10 +9,11 @@ const findByID = require('../middleware/findById');
 const findAll = require('../middleware/findAll');
 const { validateKey } = require('../middleware/apiKeys');
 const isAuthenticated = require('../middleware/isAuthenticated');
+const validate = require('../middleware/validation');
 
 // all users
 router.post('/login', authController.login);
-router.post('/register',  authController.register);
+router.post('/register', validate('createUser'), authController.register);
 router.post('/refresh_token', isAuthenticated,  authController.refreshToken);
 router.post('/logout', isAuthenticated,  authController.logout);
 router.get('/secret',  isAuthenticated,  authController.secret);
