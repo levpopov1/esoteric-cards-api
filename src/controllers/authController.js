@@ -1,5 +1,8 @@
+const { validationResult } = require('express-validator');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const saltRounds = 12;
 
 function createAccessToken(user){
   return jwt.sign({id: user.id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "15m"});
@@ -20,8 +23,34 @@ function login(req, res){
 
 }
 
-function register(req, res){
-  res.status(200).json({route: "register"});
+async function register(req, res){
+
+  const errors = validationResult(req);
+  
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array({ onlyFirstError: true }) });
+  }
+  
+  const email = req.body.email;
+  const password = req.body.password;
+  const username = req.body.username || email.slice(0, 31);
+  const passwordHash = await bcrypt.hash(password, saltRounds);
+
+  try {
+    User.create({
+      email: email,
+      password: passwordHash,
+      username: username
+    }, function(err, result){
+      if(err){
+        return res.status(500).json({error: 500, message: "Failed to create user"});
+      }
+
+      return res.status(200).json({error: null, user: result.id});
+    });
+  } catch (error) {
+    res.status(500).json({error: 500, message: "Failed to create user"});
+  }
 }
 
 async function refreshToken(req, res){
