@@ -12,6 +12,14 @@ function createRefreshToken(user){
   return jwt.sign({id: user.id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn: "30d"});
 }
 
+function verifyAccessToken(token){
+  return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+}
+
+function verifyRefreshToken(token){
+  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+}
+
 async function login(req, res){
     
   const errors = validationResult(req);
@@ -30,8 +38,9 @@ async function login(req, res){
     
   const accessToken = createAccessToken(user);
   const refreshToken = createRefreshToken(user);
+
   res.cookie("jid", refreshToken, {httpOnly: true});
-  res.status(200).json({accessToken});
+  res.status(200).json({ok: true, accessToken: accessToken});
 
 }
 
@@ -66,29 +75,26 @@ async function register(req, res){
 }
 
 async function refreshToken(req, res){
-  const token = req.cookies.jid;
 
-  if(!token){
-    return res.send({ok: false, accessToken: "missing token"});
+  const refreshToken = req.cookies.jid;
+
+  if(!refreshToken){
+    return res.status(400).json({ error: 400, message: "Missing token" });
   }
 
   try {
-    const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
-
-  } catch (error) {
-    return res.send({ok: false, accessToken: "failed jwt"});
+    verifyRefreshToken(refreshToken);
+  } 
+  catch (error) {
+    return res.status(401).json({ error: 401, message: "Failed to verify token" });
   }
 
-  const user = await User.findOne({id: req.payload.id});
+  const user = {id: req.payload.id}
+  const newRefreshToken = createRefreshToken(user);
+  const newAccessToken = createAccessToken(user);
 
-  // if(!user){
-  //   return res.send({ok: false, accessToken: "no user"});
-  // }
-
-  // refreh the refresh token
-  // res.cookie("jid", createRefreshToken(user), {httpOnly: true});
-
-  return res.send({ok: true, accessToken: createAccessToken(user)});
+  res.cookie("jid", newRefreshToken, {httpOnly: true});
+  res.send({ok: true, accessToken: newAccessToken});
 
 }
 
