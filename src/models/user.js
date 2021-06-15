@@ -2,18 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    api_key: {
-        type: String,
-        required: true
-    },
-    host: {
-        type: String,
-        required: true
-    },
-    usage: {
-        requests: Number,
-        lastAccessTime: Date
-    }
+  username:{
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password:{
+    type: String,
+    required: true
+  },
+  api_key: {
+    type: String
+  },
+  api_key_usage: {
+    requests: Number,
+    lastAccessTime: Date
+  }
 });
 
 
