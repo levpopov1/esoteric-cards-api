@@ -20,6 +20,13 @@ function verifyRefreshToken(token){
   return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
 }
 
+function generateErrorResponse(code, message, param){
+  return {
+    code: code,
+    msg: message
+  }
+}
+
 async function login(req, res){
     
   const errors = validationResult(req);
@@ -28,16 +35,10 @@ async function login(req, res){
     return res.status(400).json({ errors: errors.array({ onlyFirstError: true }) });
   }
   
-  const user = req.user;
-  const submittedPassword = req.body.password;
-  const isPasswordValid = await bcrypt.compare(submittedPassword, user.password);
-
-  if(!isPasswordValid){
-    return res.status(401).json({error: 401, message: "Unauthorized. Invalid credentials"});
-  }
-    
-  const accessToken = createAccessToken(user);
-  const refreshToken = createRefreshToken(user);
+  // if we get to this point, all validations have passed
+  // and the user is set on the request object
+  const accessToken = createAccessToken(req.user);
+  const refreshToken = createRefreshToken(req.user);
 
   res.cookie("jid", refreshToken, {httpOnly: true});
   res.status(200).json({ok: true, accessToken: accessToken});
