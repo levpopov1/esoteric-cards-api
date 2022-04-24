@@ -24,7 +24,10 @@ app.set('trust proxy', true);
 */
 
 // cross origin request middleware
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 // dev middleware
 app.use(morgan('dev'));
 // url middleware
