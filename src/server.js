@@ -3,9 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
-const connectDB  = require('./db');
+const connectDB = require('./db');
 const cookieParser = require('cookie-parser');
-const simulateSlowNetwork = require('./middleware/simulateSlowNetwork');
+// const simulateSlowNetwork = require('./middleware/simulateSlowNetwork');
 
 // sets environment variables based on centents of .env file
 require('dotenv').config();
@@ -24,10 +24,12 @@ app.set('trust proxy', true);
 */
 
 // cross origin request middleware
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-}));
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 // dev middleware
 app.use(morgan('dev'));
 // url middleware
@@ -43,6 +45,6 @@ app.use('/api/v1', routes);
 
 // begin listening on given port
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, function(){
-    console.log(`The app is running in ${process.env.NODE_ENV} mode on port: ${PORT}`);
+app.listen(PORT, function () {
+  console.log(`The app is running in ${process.env.NODE_ENV} mode on port: ${PORT}`);
 });

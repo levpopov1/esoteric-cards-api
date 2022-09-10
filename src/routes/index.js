@@ -10,17 +10,16 @@ const usersRouter = require('./usersRouter');
 const authRouter = require('./authRotuer');
 
 // basic response on Root endpoint
-router.get('/', function(req, res){
-    res.status(200).json({
-        statusCode: 200,
-        message: 'welcome to the API'
-    });
+router.get('/', function (req, res) {
+  res.status(200).json({
+    statusCode: 200,
+    message: 'welcome to the API',
+  });
 });
 
 // apply handlers to specific routes
 
-
-// goup by, 
+// goup by,
 // category
 // vendor
 // deck
@@ -46,8 +45,6 @@ router.use('/auth', authRouter);
 
 // // decks by id
 // router.use('/decks/:deck_id', playingCardsRouter);
-
-
 
 // if none of the above routes handle the request it will error out here
 router.use(notFound);

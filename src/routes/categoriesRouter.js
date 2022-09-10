@@ -24,5 +24,4 @@ router.get('/:id/decks', findByID(Category), categoriesController.getAllDecks);
 // write
 router.post('/', categoriesController.post);
 
-
 module.exports = router;

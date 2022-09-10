@@ -7,7 +7,7 @@ const Vendor = mongoose.model('Vendor');
 
 const findByID = require('../middleware/findById');
 const findAll = require('../middleware/findAll');
-const { route } = require('./categoriesRouter');
+// const { route } = require('./categoriesRouter');
 
 // all vendors
 router.get('/', findAll(Vendor), vendorsController.getAllVendors);
@@ -19,6 +19,5 @@ router.get('/:id/decks', findByID(Vendor), vendorsController.getAllDecks);
 
 // write
 router.post('/', vendorsController.post);
-
 
 module.exports = router;

@@ -19,5 +19,4 @@ router.get('/:id/cards', findByID(Deck), decksController.getAllCards);
 // write
 router.post('/', decksController.post);
 
-
 module.exports = router;
