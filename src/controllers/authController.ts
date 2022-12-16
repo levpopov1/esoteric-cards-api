@@ -1,7 +1,9 @@
-const { validationResult } = require('express-validator');
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+import type { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+import { User } from '../models/user';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 const saltRounds = 12;
 
 function createAccessToken(user) {
@@ -31,7 +33,7 @@ function verifyRefreshToken(token) {
 //   };
 // }
 
-async function login(req, res) {
+async function login(req: Request, res: Response) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -55,7 +57,7 @@ async function login(req, res) {
   });
 }
 
-async function register(req, res) {
+async function register(req: Request, res: Response) {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -98,7 +100,7 @@ async function register(req, res) {
   }
 }
 
-async function refreshToken(req, res) {
+async function refreshToken(req: Request, res: Response) {
   const refreshToken = req.cookies.jid;
 
   if (!refreshToken) {
@@ -126,17 +128,13 @@ async function refreshToken(req, res) {
   });
 }
 
-// function logout(req, res) {
-//   // handle revoking of access tokens and refresh tokens
-// }
+function logout(req: Request, res: Response) {
+  // handle revoking of access tokens and refresh tokens
+  res.status(200).json({ data: 'ok' });
+}
 
-function secret(req, res) {
+function secret(req: Request, res: Response) {
   res.status(200).json({ route: 'secret', user: req.payload });
 }
 
-module.exports = {
-  login,
-  register,
-  secret,
-  refreshToken,
-};
+export { login, logout, register, secret, refreshToken };

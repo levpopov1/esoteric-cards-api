@@ -1,16 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const { notFound, genericErrorHandler } = require('../middleware/errorHandlers');
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import categoriesRouter from './categoriesRouter';
+import vendorsRouter from './vendorsRouter';
+import decksRouter from './decksRouter';
+import usersRouter from './usersRouter';
+import authRouter from './authRotuer';
 
-// define route handlers
-const categoriesRouter = require('./categoriesRouter');
-const vendorsRouter = require('./vendorsRouter');
-const decksRouter = require('./decksRouter');
-const usersRouter = require('./usersRouter');
-const authRouter = require('./authRotuer');
+const router = Router();
 
 // basic response on Root endpoint
-router.get('/', function (req, res) {
+router.get('/', function (req: Request, res: Response) {
   res.status(200).json({
     statusCode: 200,
     message: 'welcome to the API',
@@ -46,8 +45,4 @@ router.use('/auth', authRouter);
 // // decks by id
 // router.use('/decks/:deck_id', playingCardsRouter);
 
-// if none of the above routes handle the request it will error out here
-router.use(notFound);
-router.use(genericErrorHandler);
-
-module.exports = router;
+export default router;

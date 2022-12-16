@@ -1,12 +1,11 @@
-const express = require('express');
+import express from 'express';
+import mongoose from 'mongoose';
+import findByID from '../middleware/findById';
+import findAll from '../middleware/findAll';
+import * as decksController from '../controllers/decksController';
+
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const decksController = require('../controllers/decksController');
 const Deck = mongoose.model('Deck');
-
-const findByID = require('../middleware/findById');
-const findAll = require('../middleware/findAll');
 
 // all Decks
 router.get('/', findAll(Deck), decksController.getAllDecks);
@@ -19,4 +18,4 @@ router.get('/:id/cards', findByID(Deck), decksController.getAllCards);
 // write
 router.post('/', decksController.post);
 
-module.exports = router;
+export default router;

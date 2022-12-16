@@ -1,6 +1,7 @@
-const jwt = require('jsonwebtoken');
+import type { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-const isAuthenticated = async function (req, res, next) {
+const isAuthenticated = async function (req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers['authorization'];
 
   try {
@@ -13,7 +14,7 @@ const isAuthenticated = async function (req, res, next) {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, payload) {
       if (err) {
         res.statusCode = 403;
-        throw new Error(err);
+        return next(err);
       }
       req.payload = payload;
     });
@@ -24,4 +25,4 @@ const isAuthenticated = async function (req, res, next) {
   return next();
 };
 
-module.exports = isAuthenticated;
+export default isAuthenticated;

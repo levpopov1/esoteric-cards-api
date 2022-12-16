@@ -1,13 +1,12 @@
-const express = require('express');
+import express from 'express';
+import mongoose from 'mongoose';
+import findByID from '../middleware/findById';
+import findAll from '../middleware/findAll';
+import findByParam from '../middleware/findByParam';
+import * as categoriesController from '../controllers/categoriesController';
+
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const categoriesController = require('../controllers/categoriesController');
 const Category = mongoose.model('Category');
-
-const findByID = require('../middleware/findById');
-const findAll = require('../middleware/findAll');
-const findByParam = require('../middleware/findByParam');
 
 // all categories
 router.get('/', findAll(Category), categoriesController.getAllCategories);
@@ -24,4 +23,4 @@ router.get('/:id/decks', findByID(Category), categoriesController.getAllDecks);
 // write
 router.post('/', categoriesController.post);
 
-module.exports = router;
+export default router;

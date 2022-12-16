@@ -1,12 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-var CategoriesSchema = new Schema({
-  category_id: {
+const VendorsSchema = new Schema({
+  vendor_id: {
     type: Number,
     required: true,
   },
   name: {
+    type: String,
+    required: true,
+  },
+  category: {
     type: String,
     required: true,
   },
@@ -17,12 +21,12 @@ var CategoriesSchema = new Schema({
   slug: {
     type: String,
   },
-  vendors: {
-    type: [String],
+  img: {
+    type: String,
   },
   decks: {
     type: [String],
   },
 });
 
-module.exports = mongoose.model('Category', CategoriesSchema, 'categories');
+export default mongoose.model('Vendor', VendorsSchema, 'vendors');

@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { CardSchema } from './card';
+
 const Schema = mongoose.Schema;
 
-var CardSchema = require('./card');
-
-var DecksSchema = new Schema({
+const DecksSchema = new Schema({
   deck_id: {
     type: Number,
     required: true,
@@ -31,4 +31,4 @@ var DecksSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Deck', DecksSchema, 'decks');
+export default mongoose.model('Deck', DecksSchema, 'decks');

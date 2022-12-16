@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "Node16",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "sourceMap": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "typeRoots": ["./src/types"]
+  },
+  "include": ["src/**/*.ts"]
+}

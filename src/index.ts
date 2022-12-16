@@ -1,14 +1,14 @@
-// main entry point for API server
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const routes = require('./routes');
-const connectDB = require('./db');
-const cookieParser = require('cookie-parser');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import connectDB from './db';
+import routes from './routes';
 // const simulateSlowNetwork = require('./middleware/simulateSlowNetwork');
 
 // sets environment variables based on centents of .env file
-require('dotenv').config();
+dotenv.config();
 
 // db
 connectDB();

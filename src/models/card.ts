@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-var CardSchema = new Schema({
+export const CardSchema = new Schema({
   card_id: {
     type: Number,
     required: true,
@@ -23,4 +23,4 @@ var CardSchema = new Schema({
   },
 });
 
-module.exports = mongoose.Schema(CardSchema);
+export default mongoose.model('Card', CardSchema, 'cards');
